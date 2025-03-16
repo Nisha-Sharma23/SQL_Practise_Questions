@@ -1,0 +1,55 @@
+use scott;
+# 1.WAQTD NUMBER OF EMPLOYEES WORKING IN EACH DEPARTEMENT EXCEPT PRESIDENT
+
+select * from emp;
+select * from dept;
+
+select count(ename) from emp where job not in ("president") ;
+select count(*)Noofemployees, deptno from emp where job!="president"
+group by deptno;
+
+# WAQTD TOTAL SALARY NEEDED TO PAY ALL THE EMPLOYEES IN EACH JOB 
+select job, sum(sal)Total_sal from emp group by job;
+
+# .WAQTD NUMBER OF EMPLOYEEES WORKING AS MANAGER IN EACH DEPARTMENT
+select deptno,count(*)Total_emp from emp where job="manager" group by deptno;
+
+# WAQTD AVG SALARY NEEDED TO PAY ALL THE EMPLOYEES IN EACH DEPARTMENT EXCLUDING THE EMPLOYEES OF DEPTNO 20
+select deptno,avg(sal) from emp where deptno!=20
+group by deptno;
+
+## WAQTD NUMBER OF EMPLOYEES HAVING CHARACTER 'A' IN THEIR NAMES IN EACH JOB 
+
+select count(*),job from emp where ename like "%a%" group by job;
+
+# .WAQTD NUMBER OF EMPLOYEES AND AVG SALARY NEEDED TO PAY THE  EMPLOYEES WHO'S
+# SALARY IS GREATER THAN 2000 IN EACH DEPARTMENT
+
+select deptno,count(*)Totalemp, avg(sal)Avgsalary from emp where sal>2000 group by 1;
+
+#WAQDTD NUMBER OF EMPLOYEES AND TOTAL SALARY GIVEN TO ALL THE  
+ #SALESMAN IN EACH DEPT
+ 
+ select deptno, count(*),sum(sal) from emp where job="salesman" group by deptno;
+ 
+ ## WAQTD NUMBER OF EMPLOYEES WITH THEIR MAXIMUM SALARIES IN EACH JOB
+ select job, count(*), max(sal) from emp group by 1;
+ 
+ #  WAQTD MAXIMUM SALARIES GIVEN TO AN EMPLOYEE WORKING IN EACH DEPT
+
+select deptno, max(sal) from emp group 	by 1;
+
+# WAQTD NUMBER OF TIMES THE SALARIES ARE PRESENT IN  EMPLOYEE TABLE
+select count(*), sal from emp group by sal;
+
+ # WAQTD NUMBER OF EMPLOYEEES WORKING IN EACH DEPARTMENT HAVING ATLEAST 
+#    2 EMP'S IN EACH DEPT
+
+select deptno, count(*) from emp  group by 1 having  count(*)>=2;
+
+#  WAQTD NUMBER OF EMPLOYEES HIRED ON THE SAME DAY INTO THE SAME DEPARTMENT
+ select hiredate, deptno, count(*) from emp group by 1,2;
+ 
+ #  WAQTD NUMBER OF EMPLOYEES GETTING THE SAME SALARY IN THE SAME DEPARTMENT
+ select sal,deptno, count(*) from emp group by sal,deptno;
+ 
